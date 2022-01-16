@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-logo">
+      <P class="logo">Ryokucha</P>
+      <span class="material-icons logo-icon">emoji_food_beverage</span>
+      </div>  
+      <div class="menu-list">
+      <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">FORMULAR</a></li>
+          <li><a href="#">BLOG</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Login</a></li>
+      </ul>
+      </div>
+      <span class="material-icons menu-icon">menu</span>
+    </header>
+
+    <main>
+      <div class="top-wrapper">
+        <div class="container">
+          <h1>Let's calculate!</h1>
+        </div>
+      </div>
+      <div class="first wrapper">
+        <div class="container">
+          <h3>
+            <span class="material-icons window-icon">desktop_windows</span>
+            Inch of display
+          </h3>
+          <p>To find the inch of display.</p>
+          <div class="overview">
+            <form name="fi1">
+              <table class="formula-table">
+                <tr>
+                  <th class="right">Resolution_Horizontal</th>
+                  <td><input type="text" name="resolutionH" size="10"></td>
+                </tr>
+                <tr>
+                  <th class="right">Pixel_Format</th>
+                  <td>
+                    <select name="PixelFormat">
+                      <option value="3" selected>RGB</option>
+                      <option value="2">2</option>
+                      <option value="1">WB</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="right">Resolution_Vertical</th>
+                  <td><input type="text" name="resolutionV" size="10"></td>
+                </tr>
+                <tr>
+                  <th class="right">subPixel_Horizontal</th>
+                  <td><input type="text" name="subPixelH" size="10"></td>
+                  <td class="left"><font face="symbol">m</font>m</td>
+                  <td><input class="center" type="text" name="PPIH" size="5" value="-"></td>
+                  <td>PPI</td>
+                </tr>
+                <tr>
+                  <th class="right">Pixel_Vertical</th>
+                  <td><input type="text" name="pixelV" size="10"></td>
+                  <td class="left"><font face="symbol">m</font>m</td>
+                  <td><input class="center" type="text" name="PPIV" size="5" value="-"></td>
+                  <td>PPI</td>
+                </tr>
+                <tr>
+                  <td class="right"><INPUT type="button" name="buttoncalc" onClick="FindInch()" value="FindInch" class="btn calculate"></th>
+                  <td><input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear"></td>
+                  <td><input type="button" name="buttoncalc" onClick="subPixelTimes()" value="xSubPixel" class="btn threetimes">
+                </tr>
+                <tr>
+                  <th class="right">A.A._Horizontal</th>
+                  <td><input type="text" name="resultAAH" size="10"></td>
+                  <td class="left">mm</td>
+                </tr>
+                <tr>
+                  <th class="right">A.A._Vertical</th>
+                  <td><input type="text" name="resultAAV" size="10"></td>
+                  <td class="left">mm</td>
+                </tr>
+                <tr>
+                  <th class="right">Inch</th>
+                  <td><input type="text" name="result" size="10"></td>
+                </tr>
+              </table>
+            </form>
+            <div class="explanation">
+              <P>Difinition</p>
+              <img class="expImg" src="../public/images/inch.png" alt="Inch">
+              <p>PPI: Pixel Per Inch</p>
+              <p>PPI = 25.4 / Pixel * 10^3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+              <!--          <form name="frm1">
+              <p>
+                <label for="resolutionH">Resolution_Horizontal:</label>
+                <input type="text" name="resolutionH">
+              </p>
+              <p>
+                <label for="resolutionV">Resolution_Vertical:</label>
+                <input type="text" name="resolutionV">
+              </p>
+              <input type="text" name="firstValue" size="4">×
+              <input type="text" name="secondValue" size="4">＝
+              <input type="text" name="result" size="4">
+              <br>
+              <input type="button" name="buttoncalc" onClick="Calculate()" value="Calculate" class="btn calculate">
+              <input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear">
+            </form>
+            -->
+            <!--
+            <div class="example wrapper">
+              <div class="container">
+                <h3>Multipulication</h3>
+                <p>Multiply with two number.</p>
+                <form name="frm1">
+                  <input type="text" name="firstValue" size="4">×
+                  <input type="text" name="secondValue" size="4">＝
+                  <input type="text" name="result" size="4">
+                  <br>
+                  <INPUT type="button" name="buttoncalc" onClick="Calculate()" value="Calculate" class="btn calculate">
+                  <input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear">
+                </form>
+              </div>
+            </div>
+            -->
+    </main>
+    <footer>
+      <div class="container">
+        <p class="logo">Ryokucha</p>
+        <p>Learn To Be Creative.</P>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

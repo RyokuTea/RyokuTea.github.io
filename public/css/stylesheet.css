@@ -1,0 +1,175 @@
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+  margin: 1px 0px;
+}
+
+ul {
+  list-style-type: none;
+  /* 
+    Automatic setting is paddig-inline-start:40px.
+    So padding-left should be reset.
+    (Check it by developper tool!)
+  */
+  padding-left: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: rgba(22, 50, 92, 0.8);
+  width: 150px;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 0px 200px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.header-logo {
+  text-align: center;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logo-icon {
+  color:greenyellow;
+  font-size: 50px;
+  display: block;
+  margin-top: 5px;
+}
+
+.menu-list a {
+  color: #ffffff;
+  display: block;
+  padding: 16px 24px;
+}
+
+.menu-list a:hover {
+  background-color: #f0f4f9;
+  color: #2b546a;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.menu-list a:active {
+  opacity: 1;
+}
+
+.menu-icon {
+  display: none;
+}
+
+main {
+  margin-left: 150px;
+  padding: 40px 40px 0 40px;
+}
+
+.top-wrapper {
+  text-align: center;
+  color: #2b546a;
+  padding-bottom: 20px;
+}
+
+.window-icons {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.formula-table {
+  margin: 30px auto 0px;
+}
+
+.right {
+  text-align: right;
+  font-weight: 400;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.wrapper {
+  color: #2b546a;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.expImg {
+  margin-top: 5px;
+}
+
+.btn {
+  border:black solid 0.5px;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  position:relative;
+  top:-2px;
+  cursor: pointer;
+}
+
+.btn:active {
+  position: relative;
+  top:2px;
+}
+
+.calculate {
+  background-color:darkblue;
+  box-shadow:0 2px darkslateblue;
+  color: #ffffff;
+}
+
+.calculate:hover {
+  box-shadow:0 4px darkslateblue;
+}
+
+.calculate:active {
+  box-shadow: none;
+}
+
+.clear {
+  background-color: cyan;
+  box-shadow:0 2px darkcyan;
+}
+
+.clear:hover {
+  box-shadow:0 4px darkcyan;
+}
+
+.clear:active {
+  box-shadow:none;
+}
+
+footer {
+  color: #8491a5;
+  margin-left: 150px;
+  padding: 30px 0px;
+  border-top: 2px solid #bac6d3;
+}
+
+footer .container {
+  margin-left: 50px;
+}

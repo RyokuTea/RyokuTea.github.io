@@ -1,0 +1,45 @@
+/* max-width: 970px */
+@media (max-width: 970px) {
+    header {
+        width: 100%;
+        height: 40px;
+        padding: 8px 16px;
+        top: 0;
+        flex-direction: row;
+    }
+
+    .header-logo {
+        display: flex;
+        position: relative;
+    }
+
+    .logo-icon {
+        position: absolute;
+        top: -5px;
+        left: 80px;
+        text-align: center;
+        align-items: center;
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    .menu-list {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        color: #ffffff;
+        font-size: 24px;
+        padding-right: 20px;
+    }
+
+    main {
+        margin: 40px 0px 0px 0px;
+        padding: 16px 16px 0px;
+    }
+
+    footer {
+        margin-left: 0px;
+    }
+}
