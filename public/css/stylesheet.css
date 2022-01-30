@@ -81,9 +81,9 @@ main {
   padding-bottom: 20px;
 }
 
-.window-icons {
+.window-icon {
   margin-right: 5px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .formula-table {
@@ -101,6 +101,18 @@ main {
 
 .left {
   text-align: left;
+}
+
+.red {
+  color:red;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
 }
 
 .wrapper {
