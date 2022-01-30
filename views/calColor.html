@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color of display</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-logo">
+      <P class="logo">Ryokucha</P>
+      <span class="material-icons logo-icon">emoji_food_beverage</span>
+      </div>  
+      <div class="menu-list">
+      <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">FORMULAR</a></li>
+          <li><a href="#">BLOG</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Login</a></li>
+      </ul>
+      </div>
+      <span class="material-icons menu-icon">menu</span>
+    </header>
+    <main>
+      <div class="top-wrapper">
+        <div class="container">
+          <h1>Let's calculate!</h1>
+        </div>
+      </div>
+      <div class="second wrapper">
+        <div class="container">
+          <h3>
+            <span class="material-icons window-icon">palette</span>
+            Color of display
+          </h3>
+          <p>To convert the color of display.</p>
+          <div class="overview">
+            <form name="fi2">
+              <table class="formula-table">
+                <tr>
+                  <th colspan="2"></th>
+                  <th class="center" colspan="4">XY (CIE 1931)</th>
+                  <th class="center" colspan="4">u'v'(CIE 1976)</th>
+                </tr>
+                <tr>
+                  <th colspan="2"></th>
+                  <th class="center" colspan="2">
+                    <select name="ColorFormat" onchange="colorKind(this)">
+                      <option value="Non-select" selected>Select one</option>
+                      <option value="sRGB">sRGB</option>
+                      <option value="DCI-P3">DCI-P3</option>
+                      <option value="NTSC">NTSC</option>
+                      <option value="AdobeRGB">AdobeRGB</option>
+                    </select>
+                  </th>
+                  <th class="center" colspan="2">Sample*</th>
+                  <th class="center" colspan="2">
+                    <input class="center" type="text" name="colorF2" size="3" value="-">
+                  </th>
+                  <th class="center" colspan="2">Sample*</th>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center red">Red</th>
+                  <td><input class="center" type="text" name="R1x" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R1y" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R2x" size="3" value=""></td>
+                  <td><input class="center" type="text" name="R2y" size="3" value=""></td>
+                  <td><input class="center" type="text" name="R1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="R2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center green">Green</th>
+                  <td><input class="center" type="text" name="G1x" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G1y" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G2x" size="3" value=""></td>
+                  <td><input class="center" type="text" name="G2y" size="3" value=""></td>
+                  <td><input class="center" type="text" name="G1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="G2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center blue">Blue</th>
+                  <td><input class="center" type="text" name="B1x" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B1y" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B2x" size="3" value=""></td>
+                  <td><input class="center" type="text" name="B2y" size="3" value=""></td>
+                  <td><input class="center" type="text" name="B1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="B2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center">NTSC Ratio</th>
+                  <th class="center">
+                    <input class="center" type="text" name="areaRatioNTSCxy" size="3" value="-">
+                  </th>
+                  <td class="left">%</td>
+                  <td colspan="2"></td>
+                  <td class="center">
+                    <input class="center" type="text" name="areaRatioNTSCuv" size="3" value="-">
+                  </td>
+                  <td class="left">%</td>
+                </tr>
+                <tr>
+                  <th class="center">
+                    <input class="center" type="text" name="colorF1" size="3" value="-">
+                  </th>
+                  <th>Ratio</th>
+                  <td></td>
+                  <td class="right" colspan="2">Area Ratio</td>
+                  <td class="center">
+                    <input class="center" type="text" name="areaRatioxy" size="3" value="-">
+                  </td>
+                  <td colspan="3"></td>
+                  <td class="center">
+                    <input class="center" type="text" name="areaRatiouv" size="3" value="-">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <INPUT type="button" name="buttoncalc" onClick="calcRatio()" value="CalcRatio" class="btn calculate">
+                  </td>
+                  <td></td>
+                  <td class="right" colspan="2">Coverage Ratio</td>
+                  <td class="center">
+                    <input class="center" type="text" name="coverageRatioxy" size="3" value="-">
+                  </td>
+                  <td colspan="3"></td>
+                  <td class="center">
+                    <input class="center" type="text" name="coverageRatiouv" size="3" value="-">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="left" colspan="9">*You can choose either color space you like.</td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <p class="logo">Ryokucha</p>
+        <p>Learn To Be Creative.</P>
+      </div>
+    </footer>
+    <script src="../public/javascript/script.js"></script>
+  </body>
+</html>
