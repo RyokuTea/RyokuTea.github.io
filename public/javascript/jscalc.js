@@ -141,27 +141,62 @@ function calcRatio(){
    var indexA1 = [fi2.B1x.value,fi2.B1y.value]; //Blue
    var indexB1 = [fi2.G1x.value,fi2.G1y.value]; //Green
    var indexC1 = [fi2.R1x.value,fi2.R1y.value]; //Red
-   
-   //sample
-   var indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
-   var indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
-   var indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
-   
-   fi2.areaRatioxy.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
-   fi2.coverageRatioxy.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 
-   //standard value
-   indexA1 = [fi2.B1u.value,fi2.B1v.value]; //Blue
-   indexB1 = [fi2.G1u.value,fi2.G1v.value]; //Green
-   indexC1 = [fi2.R1u.value,fi2.R1v.value]; //Red
+   //重複してしまう。すっきりできないか。functionでべつにする？
+   //uvのときのカバーれっじレシオとエリアレシオがおかしい
+   if(!(fi2.B2x.value=="")){
+      //sample
+      var indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
+      var indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
+      var indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
+      
+      fi2.areaRatioxy.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+      fi2.coverageRatioxy.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 
-   //sample
-   var indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
-   var indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
-   var indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
+      // convert xy -> uv
+      fi2.R2u.value=xyTOuv_u(fi2.R2x.value, fi2.R2y.value);
+      fi2.R2v.value=xyTOuv_v(fi2.R2x.value, fi2.R2y.value);
+      fi2.G2u.value=xyTOuv_u(fi2.G2x.value, fi2.G2y.value);
+      fi2.G2v.value=xyTOuv_v(fi2.G2x.value, fi2.G2y.value);
+      fi2.B2u.value=xyTOuv_u(fi2.B2x.value, fi2.B2y.value);
+      fi2.B2v.value=xyTOuv_v(fi2.B2x.value, fi2.B2y.value);
 
-   fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
-   fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+      indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
+      indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
+      indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
+
+      fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+      fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+
+   } else if(!(fi2.B2u.value=="")){
+      //standard value
+      indexA1 = [fi2.B1u.value,fi2.B1v.value]; //Blue
+      indexB1 = [fi2.G1u.value,fi2.G1v.value]; //Green
+      indexC1 = [fi2.R1u.value,fi2.R1v.value]; //Red
+
+      //sample
+      var indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
+      var indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
+      var indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
+
+      fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+      fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+
+      // convert uv -> xy
+      fi2.R2x.value=uvTOxy_x(fi2.R2u.value, fi2.R2v.value);
+      fi2.R2y.value=uvTOxy_y(fi2.R2u.value, fi2.R2v.value);
+      fi2.G2x.value=uvTOxy_x(fi2.G2u.value, fi2.G2v.value);
+      fi2.G2y.value=uvTOxy_y(fi2.G2u.value, fi2.G2v.value);
+      fi2.B2x.value=uvTOxy_x(fi2.B2u.value, fi2.B2v.value);
+      fi2.B2y.value=uvTOxy_y(fi2.B2u.value, fi2.B2v.value);
+
+      indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
+      indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
+      indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
+      
+      fi2.areaRatioxy.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+      fi2.coverageRatioxy.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+   }
 }
 
 function distance(P1,P2){
