@@ -9,24 +9,16 @@
     <link rel="stylesheet" href="../public/css/responsive.css">
     <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      //共通パーツ読み込み
+      //loadはネット上でしか機能しない
+      $(function() {
+       $("#header").load("header.html");
+      });
+    </script>
   </head>
   <body>
-    <header>
-      <div class="header-logo">
-      <P class="logo">Ryokucha</P>
-      <span class="material-icons logo-icon">emoji_food_beverage</span>
-      </div>  
-      <div class="menu-list">
-      <ul>
-          <li><a href="#">HOME</a></li>
-          <li><a href="#">ABOUT</a></li>
-          <li><a href="#">FORMULAR</a></li>
-          <li><a href="#">BLOG</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Login</a></li>
-      </ul>
-      </div>
-      <span class="material-icons menu-icon">menu</span>
+    <header id="header">
     </header>
     <main>
       <div class="top-wrapper">
