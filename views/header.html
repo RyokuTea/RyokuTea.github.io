@@ -76,4 +76,17 @@
 <!-- responsive -->
 <span class="material-icons menu-icon">menu</span>
 
-<script src="../public/javascript/script.js"></script>
+<script>
+  $(function() {
+    $('.menu-list-item').click(function() {
+      var $subMenu = $(this).find('div');
+      if($subMenu.hasClass('open')){
+        $subMenu.fadeOut();
+        $subMenu.removeClass('open');
+      } else {
+        $subMenu.fadeIn();
+        $subMenu.addClass('open');
+      }
+    });
+  });
+</script>
