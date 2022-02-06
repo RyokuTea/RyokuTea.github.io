@@ -19,7 +19,7 @@
   </head>
   <body>
     <header id="header">
-      <!--
+    <!--
       <div class="header-logo">
         <P class="logo">Ryokucha</P>
         <span class="material-icons logo-icon">emoji_food_beverage</span>
@@ -89,9 +89,27 @@
               $subMenu.addClass('open');
             }
           });
+          
+          $('#menu-icon').click(function() {
+            $('#menu').fadeIn();
+            $('#close-icon').fadeIn();
+            $('#menu-icon').fadeOut();
+            $('#header').css({
+              height: "100%"
+            });
+          });
+
+        $('#close-icon').click(function() {
+          $('#menu').fadeOut();
+          $('#close-icon').fadeOut();
+          $('#menu-icon').fadeIn();
+          $('#header').css({
+            height: "40px"
+          });
         });
+      });
       </script>
-      -->
+    -->
     </header>
     <main>
       <div class="top-wrapper">
