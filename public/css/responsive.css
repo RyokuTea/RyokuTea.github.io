@@ -23,7 +23,10 @@
         margin-left: 20px;
     }
 
-    .menu-list {
+    .menu {
+        position: absolute;
+        top: 50px;
+        left: 30%;
         display: none;
     }
 
@@ -32,6 +35,7 @@
         color: #ffffff;
         font-size: 24px;
         padding-right: 20px;
+        cursor: pointer;
     }
 
     main {

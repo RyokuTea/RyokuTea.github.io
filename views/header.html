@@ -1,11 +1,11 @@
 <div class="header-logo">
   <P class="logo">Ryokucha</P>
   <span class="material-icons logo-icon">emoji_food_beverage</span>
-</div>  
-<div class="menu">
+</div>
+<div class="menu" id="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">HOME</p>
+      <p class="menu-item">HOME</p>
       <div class="sub-menu">
         <!--
         <p><a href="#"></a></p>
@@ -13,11 +13,9 @@
       </div>
     </li>
   </ul>
-</div>
-<div class="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">ABOUT</p>
+      <p class="menu-item">ABOUT</p>
       <div class="sub-menu">
         <!--
         <p><a href="#"></a></p>
@@ -25,22 +23,18 @@
       </div>
     </li>
   </ul>
-</div>
-<div class="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">FORMULAR</p>
+      <p class="menu-item">FORMULAR</p>
       <div class="sub-menu">
         <p><a href="/views/calColor.html">Color</a></p>
-        <p><a href="#">PPI</a></p>
+        <p><a href="/views/calPPI.html">PPI</a></p>
       </div>
     </li>
   </ul>
-</div>
-<div class="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">BLOG</p>
+      <p class="menu-item">BLOG</p>
       <div class="sub-menu">
         <!--
         <p><a href="#"></a></p>
@@ -48,11 +42,9 @@
       </div>
     </li>
   </ul>
-</div>
-<div class="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">FAQ</p>
+      <p class="menu-item">FAQ</p>
       <div class="sub-menu">
         <!--
         <p><a href="#"></a></p>
@@ -60,11 +52,9 @@
       </div>
     </li>
   </ul>
-</div>
-<div class="menu">
   <ul class="menu-list">
     <li class="menu-list-item">
-      <p class="main-item">Login</p>
+      <p class="menu-item">Login</p>
       <div class="sub-menu">
         <!--
         <p><a href="#"></a></p>
@@ -74,7 +64,8 @@
   </ul>
 </div>
 <!-- responsive -->
-<span class="material-icons menu-icon">menu</span>
+<span class="material-icons menu-icon" id="menu-icon">menu</span>
+<span class="material-icons close-icon" id="close-icon">close</span>
 
 <script>
   $(function() {

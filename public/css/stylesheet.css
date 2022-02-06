@@ -56,19 +56,19 @@ header {
   cursor: pointer;
 }
 
-.main-item {
+.menu-item {
   color: #ffffff;
   padding: 16px 24px;  
 }
 
-.main-item:hover {
+.menu-item:hover {
   background-color: #f0f4f9;
   color: #2b546a;
   opacity: 0.7;
   cursor: pointer;
 }
 
-.main-item:active {
+.menu-item:active {
   opacity: 1;
 }
 
@@ -84,6 +84,15 @@ header {
 }
 
 .menu-icon {
+  display: none;
+}
+
+.close-icon {
+  position: absolute;
+  top: 40px;
+  right: 30%;
+  color: #ffffff;
+  cursor: pointer;
   display: none;
 }
 
@@ -202,37 +211,3 @@ footer {
 footer .container {
   margin-left: 50px;
 }
-
-/*
-
-.formula-modal-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 100;
-  display: none;
-}
-
-.modal {
-  position: absolute;
-  top: 40%;
-  left: 158px;
-  background-color: #e6ecf0;
-  padding: 5px 5px;
-  border-radius: 5px;
-  width: 150px;
-  height: 45px;
-  text-align: left;
-}
-
-.close-icon {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  color: rgba(128, 128, 128, 0.46);
-  cursor: pointer;
-}
-*/

@@ -19,6 +19,79 @@
   </head>
   <body>
     <header id="header">
+      <!--
+      <div class="header-logo">
+        <P class="logo">Ryokucha</P>
+        <span class="material-icons logo-icon">emoji_food_beverage</span>
+      </div>
+      <div class="menu" id="menu">
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">HOME</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">ABOUT</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">FORMULAR</p>
+            <div class="sub-menu">
+              <p><a href="./views/calColor.html">Color</a></p>
+              <p><a href="./views/calPPI.html">PPI</a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">BLOG</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">FAQ</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">Login</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <span class="material-icons menu-icon" id="menu-icon">menu</span>
+      <span class="material-icons close-icon" id="close-icon">close</span>
+      <script>
+        $(function() {
+          $('.menu-list-item').click(function() {
+            var $subMenu = $(this).find('div');
+            if($subMenu.hasClass('open')){
+              $subMenu.fadeOut();
+              $subMenu.removeClass('open');
+            } else {
+              $subMenu.fadeIn();
+              $subMenu.addClass('open');
+            }
+          });
+        });
+      </script>
+      -->
     </header>
     <main>
       <div class="top-wrapper">
@@ -38,7 +111,7 @@
               <table class="formula-table">
                 <tr>
                   <th class="right">Resolution_Horizontal</th>
-                  <td><input type="text" name="resolutionH" size="10"></td>
+                  <td><input class="center" type="text" name="resolutionH" size="10"></td>
                 </tr>
                 <tr>
                   <th class="right">Pixel_Format</th>
@@ -52,40 +125,43 @@
                 </tr>
                 <tr>
                   <th class="right">Resolution_Vertical</th>
-                  <td><input type="text" name="resolutionV" size="10"></td>
+                  <td><input class="center" type="text" name="resolutionV" size="10"></td>
                 </tr>
                 <tr>
                   <th class="right">subPixel_Horizontal</th>
-                  <td><input type="text" name="subPixelH" size="10"></td>
+                  <td><input class="center" type="text" name="subPixelH" size="10"></td>
                   <td class="left"><font face="symbol">m</font>m</td>
-                  <td><input class="center" type="text" name="PPIH" size="5" value="-"></td>
-                  <td>PPI</td>
                 </tr>
                 <tr>
                   <th class="right">Pixel_Vertical</th>
-                  <td><input type="text" name="pixelV" size="10"></td>
+                  <td><input class="center" type="text" name="pixelV" size="10" value="-"></td>
                   <td class="left"><font face="symbol">m</font>m</td>
-                  <td><input class="center" type="text" name="PPIV" size="5" value="-"></td>
-                  <td>PPI</td>
                 </tr>
                 <tr>
                   <td class="right"><INPUT type="button" name="buttoncalc" onClick="FindInch()" value="FindInch" class="btn calculate"></th>
                   <td><input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear"></td>
-                  <td><input type="button" name="buttoncalc" onClick="subPixelTimes()" value="xSubPixel" class="btn threetimes">
+                </tr>
+                <tr>
+                  <td class="right">PPI(Horizontal)</td>
+                  <td><input class="center" type="text" name="PPIH" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <td class="right">PPI(Vertical)</td>
+                  <td><input class="center" type="text" name="PPIV" size="10" value="-"></td>
                 </tr>
                 <tr>
                   <th class="right">A.A._Horizontal</th>
-                  <td><input type="text" name="resultAAH" size="10"></td>
+                  <td><input class="center" type="text" name="resultAAH" size="10" value="-"></td>
                   <td class="left">mm</td>
                 </tr>
                 <tr>
                   <th class="right">A.A._Vertical</th>
-                  <td><input type="text" name="resultAAV" size="10"></td>
+                  <td><input class="center" type="text" name="resultAAV" size="10" value="-"></td>
                   <td class="left">mm</td>
                 </tr>
                 <tr>
                   <th class="right">Inch</th>
-                  <td><input type="text" name="result" size="10"></td>
+                  <td><input class="center" type="text" name="result" size="10" value="-"></td>
                 </tr>
               </table>
             </form>

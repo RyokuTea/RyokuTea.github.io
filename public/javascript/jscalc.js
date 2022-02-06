@@ -1,21 +1,26 @@
 function FindInch()
 {
-   fi1.resultAAH.value = (fi1.resolutionH.value * fi1.PixelFormat.value * fi1.subPixelH.value * (10**-3));
-   fi1.resultAAV.value = (fi1.resolutionV.value * fi1.pixelV.value /1000);
+   subPixelTimes()
+   fi1.resultAAH.value = Math.round(fi1.resolutionH.value * fi1.PixelFormat.value * fi1.subPixelH.value) * (10**-3);
+   fi1.resultAAV.value = Math.round(fi1.resolutionV.value * fi1.pixelV.value) * 10**-3;
    fi1.result.value = Math.round((Math.sqrt((fi1.resultAAH.value ** 2) + (fi1.resultAAV.value**2)) / 25.4)*1000)/1000;
-   PPI()
+   fi1.PPIH.value = PPIH(fi1.subPixelH.value, fi1.PixelFormat.value);
+   fi1.PPIV.value = PPIV(fi1.pixelV.value);
+}
+
+function PPIH(subPixelH, PixelFormat)
+{
+   return Math.round((25.4/(subPixelH*PixelFormat)*10**3));
+}
+
+function PPIV(pixelV)
+{
+   return Math.round((25.4/pixelV*10**3));
 }
 
 function subPixelTimes()
 {
-   fi1.pixelV.value = (fi1.subPixelH.value * 3);
-   PPI()
-}
-
-function PPI()
-{
-   fi1.PPIH.value = Math.round((25.4/(fi1.subPixelH.value*fi1.PixelFormat.value)*10**3));
-   fi1.PPIV.value = Math.round((25.4/fi1.pixelV.value*10**3));
+   fi1.pixelV.value = Math.round(fi1.subPixelH.value * fi1.PixelFormat.value *10**2)*10**-2;
 }
 
 function Clear()
@@ -23,7 +28,7 @@ function Clear()
    const clearLists = [fi1.resolutionH, fi1.PixelFormat, fi1.resolutionV, fi1.subPixelH, fi1.pixelV, fi1.PPIH, fi1.PPIV, fi1.resultAAH, fi1.resultAAV, fi1.result];
 
    clearLists.forEach((clearList)=>{
-      if(clearList.name.includes("PPI")){
+      if(clearList.name.includes("PPI") || clearList.name.includes("result") || clearList.name.includes("pixelV")){
          clearList.value = "-";
       } else if(clearList.name.includes("PixelFormat")) {
          clearList.value = 3;
@@ -142,14 +147,12 @@ function calcRatio(){
    var indexB1 = [fi2.G1x.value,fi2.G1y.value]; //Green
    var indexC1 = [fi2.R1x.value,fi2.R1y.value]; //Red
 
-   //重複してしまう。すっきりできないか。functionでべつにする？
-   //uvのときのカバーれっじレシオとエリアレシオがおかしい
+   //sample
+   var indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
+   var indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
+   var indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
+
    if(!(fi2.B2x.value=="")){
-      //sample
-      var indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
-      var indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
-      var indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
-      
       fi2.areaRatioxy.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
       fi2.coverageRatioxy.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 
@@ -160,28 +163,20 @@ function calcRatio(){
       fi2.G2v.value=xyTOuv_v(fi2.G2x.value, fi2.G2y.value);
       fi2.B2u.value=xyTOuv_u(fi2.B2x.value, fi2.B2y.value);
       fi2.B2v.value=xyTOuv_v(fi2.B2x.value, fi2.B2y.value);
+   }
 
-      indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
-      indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
-      indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
+   indexA1 = [fi2.B1u.value,fi2.B1v.value]; //Blue
+   indexB1 = [fi2.G1u.value,fi2.G1v.value]; //Green
+   indexC1 = [fi2.R1u.value,fi2.R1v.value]; //Red
 
-      fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
-      fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+   indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
+   indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
+   indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
 
-   } else if(!(fi2.B2u.value=="")){
-      //standard value
-      indexA1 = [fi2.B1u.value,fi2.B1v.value]; //Blue
-      indexB1 = [fi2.G1u.value,fi2.G1v.value]; //Green
-      indexC1 = [fi2.R1u.value,fi2.R1v.value]; //Red
+   fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+   fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 
-      //sample
-      var indexA2 = [fi2.B2u.value,fi2.B2v.value]; //Blue
-      var indexB2 = [fi2.G2u.value,fi2.G2v.value]; //Green
-      var indexC2 = [fi2.R2u.value,fi2.R2v.value]; //Red
-
-      fi2.areaRatiouv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
-      fi2.coverageRatiouv.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
-
+   if(fi2.B2x.value==""){
       // convert uv -> xy
       fi2.R2x.value=uvTOxy_x(fi2.R2u.value, fi2.R2v.value);
       fi2.R2y.value=uvTOxy_y(fi2.R2u.value, fi2.R2v.value);
@@ -190,10 +185,14 @@ function calcRatio(){
       fi2.B2x.value=uvTOxy_x(fi2.B2u.value, fi2.B2v.value);
       fi2.B2y.value=uvTOxy_y(fi2.B2u.value, fi2.B2v.value);
 
+      indexA1 = [fi2.B1x.value,fi2.B1y.value]; //Blue
+      indexB1 = [fi2.G1x.value,fi2.G1y.value]; //Green
+      indexC1 = [fi2.R1x.value,fi2.R1y.value]; //Red
+
       indexA2 = [fi2.B2x.value,fi2.B2y.value]; //Blue
       indexB2 = [fi2.G2x.value,fi2.G2y.value]; //Green
-      indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red
-      
+      indexC2 = [fi2.R2x.value,fi2.R2y.value]; //Red      
+
       fi2.areaRatioxy.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
       fi2.coverageRatioxy.value = calcCOM(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
    }
@@ -295,6 +294,18 @@ function colorKind(obj){
 
    fi2.areaRatioNTSCuv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 }
+
+function FindPPI(){
+   fi3.resultAAH.value = Math.round(Math.sqrt((25.4*fi3.inch.value)**2/(1+(fi3.resolutionV.value/fi3.resolutionH.value)**2))*10**3)*10**-3;
+   fi3.resultAAV.value = Math.round(fi3.resolutionV.value*fi3.resultAAH.value/fi3.resolutionH.value*10**3)*10**-3;
+   fi3.pixelV.value = Math.round(fi3.resultAAV.value/fi3.resolutionV.value*10**3 *10**2)*10**-2;
+   fi3.subPixelH.value = Math.round(fi3.pixelV.value / fi3.PixelFormat.value *10**2)*10**-2;
+   fi3.PPIH.value = PPIH(fi3.subPixelH.value, fi3.PixelFormat.value);
+   fi3.PPIV.value = PPIV(fi3.pixelV.value);
+}
+
+//Clearも配列をわたして、クリアできるように変更
+
 
 // Ref. This isn't used.
 function calcPi(){
