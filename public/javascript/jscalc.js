@@ -308,6 +308,7 @@ function colorKind(obj){
 
    fi2.areaRatioNTSCuv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
 
+   /*
    //検討用にあたいをいれてしまう。
    fi2.R2x.value="0.635";
    fi2.R2y.value="0.320";
@@ -322,6 +323,7 @@ function colorKind(obj){
    fi2.G2v.value="0.550";
    fi2.B2u.value="0.170";
    fi2.B2v.value="0.150";
+   */
 
 }
 
