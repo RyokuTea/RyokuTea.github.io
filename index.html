@@ -13,13 +13,14 @@
       //共通パーツ読み込み
       //loadはネット上でしか機能しない
       $(function() {
-       $("#header").load("./views/header.html");
+       $("#header").load("/views/header.html");
+       $("#footer").load("/views/footer.html");
       });
     </script>
   </head>
   <body>
     <header id="header">
-    <!--
+    
       <div class="header-logo">
         <P class="logo">Ryokucha</P>
         <span class="material-icons logo-icon">emoji_food_beverage</span>
@@ -45,8 +46,9 @@
           <li class="menu-list-item">
             <p class="menu-item">FORMULAR</p>
             <div class="sub-menu">
-              <p><a href="./views/calColor.html">Color</a></p>
-              <p><a href="./views/calPPI.html">PPI</a></p>
+              <p><a href="/index.html">Inch</a></p>
+              <p><a href="/views/calColor.html">Color</a></p>
+              <p><a href="/views/calPPI.html">PPI</a></p>
             </div>
           </li>
         </ul>
@@ -109,7 +111,7 @@
         });
       });
       </script>
-    -->
+    
     </header>
     <main>
       <div class="top-wrapper">
@@ -196,7 +198,7 @@
         <span><a href="./views/calColor.html">=> Calculate Color</a></span>
       </div>
     </main>
-    <footer>
+    <footer id="footer">
       <div class="container">
         <p class="logo">Ryokucha</p>
         <p>Learn To Be Creative.</P>

@@ -1,5 +1,4 @@
-function FindInch()
-{
+function FindInch(){
    subPixelTimes()
    fi1.resultAAH.value = Math.round(fi1.resolutionH.value * fi1.PixelFormat.value * fi1.subPixelH.value) * (10**-3);
    fi1.resultAAV.value = Math.round(fi1.resolutionV.value * fi1.pixelV.value) * 10**-3;
@@ -8,33 +7,36 @@ function FindInch()
    fi1.PPIV.value = PPIV(fi1.pixelV.value);
 }
 
-function PPIH(subPixelH, PixelFormat)
-{
+function PPIH(subPixelH, PixelFormat){
    return Math.round((25.4/(subPixelH*PixelFormat)*10**3));
 }
 
-function PPIV(pixelV)
-{
+function PPIV(pixelV){
    return Math.round((25.4/pixelV*10**3));
 }
 
-function subPixelTimes()
-{
+function subPixelTimes(){
    fi1.pixelV.value = Math.round(fi1.subPixelH.value * fi1.PixelFormat.value *10**2)*10**-2;
 }
 
-function Clear()
-{
+function Clear(){
    const clearLists = [fi1.resolutionH, fi1.PixelFormat, fi1.resolutionV, fi1.subPixelH, fi1.pixelV, fi1.PPIH, fi1.PPIV, fi1.resultAAH, fi1.resultAAV, fi1.result];
+   const dashLists = [fi1.pixelV, fi1.PPIH, fi1.PPIV, fi1.resultAAH, fi1.resultAAV, fi1.result];
 
+   ClearContents(clearLists);
+   dashContetns(dashLists);
+   fi1.PixelFormat.value = "3";
+}
+
+function dashContetns(dashLists){
+   dashLists.forEach((dashList)=>{
+      dashList.value = "-";
+   });
+}
+
+function ClearContents(clearLists){
    clearLists.forEach((clearList)=>{
-      if(clearList.name.includes("PPI") || clearList.name.includes("result") || clearList.name.includes("pixelV")){
-         clearList.value = "-";
-      } else if(clearList.name.includes("PixelFormat")) {
-         clearList.value = 3;
-      } else {
-         clearList.value = "";
-      }
+      clearList.value = "";
    });
 }
 
@@ -232,39 +234,51 @@ function colorKind(obj){
    var value = obj.options[idx].value;
    fi2.colorF1.value=value;
    fi2.colorF2.value=value;
+   fi2.colorF3.value=value;
 
-   if(value=="sRGB"){
-      fi2.R1x.value="0.640";
-      fi2.R1y.value="0.330";
-      fi2.G1x.value="0.300";
-      fi2.G1y.value="0.600";
-      fi2.B1x.value="0.150";
-      fi2.B1y.value="0.060";
+   switch (value){
+      case "sRGB":
+         fi2.R1x.value="0.640";
+         fi2.R1y.value="0.330";
+         fi2.G1x.value="0.300";
+         fi2.G1y.value="0.600";
+         fi2.B1x.value="0.150";
+         fi2.B1y.value="0.060";
+         break;
+      case "DCI-P3":
+         fi2.R1x.value="0.680";
+         fi2.R1y.value="0.320";
+         fi2.G1x.value="0.265";
+         fi2.G1y.value="0.690";
+         fi2.B1x.value="0.150";
+         fi2.B1y.value="0.060";
+         break;
+      case "NTSC":
+         fi2.R1x.value="0.670";
+         fi2.R1y.value="0.330";
+         fi2.G1x.value="0.210";
+         fi2.G1y.value="0.710";
+         fi2.B1x.value="0.140";
+         fi2.B1y.value="0.080";
+         break;
+      case "AdobeRGB":
+         fi2.R1x.value="0.640";
+         fi2.R1y.value="0.330";
+         fi2.G1x.value="0.210";
+         fi2.G1y.value="0.710";
+         fi2.B1x.value="0.150";
+         fi2.B1y.value="0.060";
+         break;
+      case "BT.2020":
+         fi2.R1x.value="0.708";
+         fi2.R1y.value="0.292";
+         fi2.G1x.value="0.170";
+         fi2.G1y.value="0.797";
+         fi2.B1x.value="0.131";
+         fi2.B1y.value="0.046";
+         break;
    }
-   if(value=="DCI-P3"){
-      fi2.R1x.value="0.680";
-      fi2.R1y.value="0.320";
-      fi2.G1x.value="0.265";
-      fi2.G1y.value="0.690";
-      fi2.B1x.value="0.150";
-      fi2.B1y.value="0.060";
-   }
-   if(value=="NTSC"){
-      fi2.R1x.value="0.670";
-      fi2.R1y.value="0.330";
-      fi2.G1x.value="0.210";
-      fi2.G1y.value="0.710";
-      fi2.B1x.value="0.140";
-      fi2.B1y.value="0.080";
-   }
-   if(value=="AdobeRGB"){
-      fi2.R1x.value="0.640";
-      fi2.R1y.value="0.330";
-      fi2.G1x.value="0.210";
-      fi2.G1y.value="0.710";
-      fi2.B1x.value="0.150";
-      fi2.B1y.value="0.060";
-   }
+
    // convert xy -> uv
    fi2.R1u.value=xyTOuv_u(fi2.R1x.value, fi2.R1y.value);
    fi2.R1v.value=xyTOuv_v(fi2.R1x.value, fi2.R1y.value);
@@ -293,19 +307,41 @@ function colorKind(obj){
    indexC2 = [fi2.R1u.value,fi2.R1v.value]; //Red
 
    fi2.areaRatioNTSCuv.value = arbitrayAreaRatio(indexA1,indexB1,indexC1,indexA2,indexB2,indexC2);
+
+   //検討用にあたいをいれてしまう。
+   fi2.R2x.value="0.635";
+   fi2.R2y.value="0.320";
+   fi2.G2x.value="0.315";
+   fi2.G2y.value="0.597";
+   fi2.B2x.value="0.155";
+   fi2.B2y.value="0.055";
+
+   fi2.R2u.value="0.440";
+   fi2.R2v.value="0.500";
+   fi2.G2u.value="0.120";
+   fi2.G2v.value="0.550";
+   fi2.B2u.value="0.170";
+   fi2.B2v.value="0.150";
+
 }
 
 function FindPPI(){
    fi3.resultAAH.value = Math.round(Math.sqrt((25.4*fi3.inch.value)**2/(1+(fi3.resolutionV.value/fi3.resolutionH.value)**2))*10**3)*10**-3;
-   fi3.resultAAV.value = Math.round(fi3.resolutionV.value*fi3.resultAAH.value/fi3.resolutionH.value*10**3)*10**-3;
-   fi3.pixelV.value = Math.round(fi3.resultAAV.value/fi3.resolutionV.value*10**3 *10**2)*10**-2;
-   fi3.subPixelH.value = Math.round(fi3.pixelV.value / fi3.PixelFormat.value *10**2)*10**-2;
+   fi3.resultAAV.value = (Math.round(fi3.resolutionV.value*fi3.resultAAH.value/fi3.resolutionH.value*10**3)*10**-3).toFixed(3);
+   fi3.pixelV.value = (Math.round(fi3.resultAAV.value/fi3.resolutionV.value*10**3 *10**2)*10**-2).toFixed(2);
+   fi3.subPixelH.value = (Math.round(fi3.pixelV.value / fi3.PixelFormat.value *10**2)*10**-2).toFixed(2);
    fi3.PPIH.value = PPIH(fi3.subPixelH.value, fi3.PixelFormat.value);
    fi3.PPIV.value = PPIV(fi3.pixelV.value);
 }
 
-//Clearも配列をわたして、クリアできるように変更
+function ClearPPI(){
+   const clearLists = [fi3.inch, fi3.resolutionH, fi3.resolutionV, fi3.resultAAH, fi3.resultAAV, fi3.subPixelH, fi3.pixelV, fi3.PPIH, fi3.PPIV];
+   const dashLists = [fi3.resultAAH, fi3.resultAAV, fi3.subPixelH, fi3.pixelV, fi3.PPIH, fi3.PPIV];
 
+   ClearContents(clearLists);
+   dashContetns(dashLists);
+   fi3.PixelFormat.value = "3";
+}
 
 // Ref. This isn't used.
 function calcPi(){

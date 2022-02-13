@@ -1,4 +1,5 @@
 $(function() {
+  
   /*
   $('#menu-icon').click(function() {
     $('#menu').fadeIn();

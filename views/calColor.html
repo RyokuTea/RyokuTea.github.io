@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../public/css/stylesheet.css">
     <link rel="stylesheet" href="../public/css/responsive.css">
     <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script type="text/javascript" src="../public/javascript/jsgraph.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>
+  <script>
       //共通パーツ読み込み
       //loadはネット上でしか機能しない
       $(function() {
        $("#header").load("/views/header.html");
+       $("#footer").load("/views/footer.html");
       });
     </script>
   </head>
@@ -39,7 +42,6 @@
                 <tr>
                   <th colspan="2"></th>
                   <th class="center" colspan="4">XY (CIE 1931)</th>
-                  <th class="center" colspan="4">u'v'(CIE 1976)</th>
                 </tr>
                 <tr>
                   <th colspan="2"></th>
@@ -53,10 +55,6 @@
                     </select>
                   </th>
                   <th class="center" colspan="2">Sample*</th>
-                  <th class="center" colspan="2">
-                    <input class="center" type="text" name="colorF2" size="7" value="-">
-                  </th>
-                  <th class="center" colspan="2">Sample*</th>
                 </tr>
                 <tr>
                   <th colspan="2" class="center red">Red</th>
@@ -64,10 +62,6 @@
                   <td><input class="center" type="text" name="R1y" size="3" value="-"></td>
                   <td><input class="center" type="text" name="R2x" size="3" value=""></td>
                   <td><input class="center" type="text" name="R2y" size="3" value=""></td>
-                  <td><input class="center" type="text" name="R1u" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="R1v" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="R2u" size="3" value=""></td>
-                  <td><input class="center" type="text" name="R2v" size="3" value=""></td>
                 </tr>
                 <tr>
                   <th colspan="2" class="center green">Green</th>
@@ -75,10 +69,6 @@
                   <td><input class="center" type="text" name="G1y" size="3" value="-"></td>
                   <td><input class="center" type="text" name="G2x" size="3" value=""></td>
                   <td><input class="center" type="text" name="G2y" size="3" value=""></td>
-                  <td><input class="center" type="text" name="G1u" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="G1v" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="G2u" size="3" value=""></td>
-                  <td><input class="center" type="text" name="G2v" size="3" value=""></td>
                 </tr>
                 <tr>
                   <th colspan="2" class="center blue">Blue</th>
@@ -86,10 +76,6 @@
                   <td><input class="center" type="text" name="B1y" size="3" value="-"></td>
                   <td><input class="center" type="text" name="B2x" size="3" value=""></td>
                   <td><input class="center" type="text" name="B2y" size="3" value=""></td>
-                  <td><input class="center" type="text" name="B1u" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="B1v" size="3" value="-"></td>
-                  <td><input class="center" type="text" name="B2u" size="3" value=""></td>
-                  <td><input class="center" type="text" name="B2v" size="3" value=""></td>
                 </tr>
                 <tr>
                   <th colspan="2" class="center">NTSC Ratio</th>
@@ -97,7 +83,59 @@
                     <input class="center" type="text" name="areaRatioNTSCxy" size="3" value="-">
                   </th>
                   <td class="left">%</td>
+                </tr>
+                <tr>
+                  <th class="center">
+                    <input class="center" type="text" name="colorF1" size="6" value="-">
+                  </th>
+                  <th>Ratio</th>
+                  <td class="center" colspan="2">Area Ratio</td>
+                  <td class="center" colspan="2">Coverage Ratio</td>
+                </tr>
+                <tr>
                   <td colspan="2"></td>
+                  <td class="center" colspan="2">
+                    <input class="center" type="text" name="areaRatioxy" size="3" value="-">
+                  </td>
+                  <td class="center" colspan="2">
+                    <input class="center" type="text" name="coverageRatioxy" size="3" value="-">
+                  </td>
+                </tr>
+                <tr><td colspan="6"><br></td></tr>
+                <tr>
+                  <th colspan="2"></th>
+                  <th class="center" colspan="4">u'v'(CIE 1976)</th>
+                </tr>
+                <tr>
+                  <th colspan="2"></th>
+                  <th class="center" colspan="2">
+                    <input class="center" type="text" name="colorF2" size="7" value="-">
+                  </th>
+                  <th class="center" colspan="2">Sample*</th>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center red">Red</th>
+                  <td><input class="center" type="text" name="R1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="R2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="R2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center green">Green</th>
+                  <td><input class="center" type="text" name="G1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="G2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="G2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center blue">Blue</th>
+                  <td><input class="center" type="text" name="B1u" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B1v" size="3" value="-"></td>
+                  <td><input class="center" type="text" name="B2u" size="3" value=""></td>
+                  <td><input class="center" type="text" name="B2v" size="3" value=""></td>
+                </tr>
+                <tr>
+                  <th colspan="2" class="center">NTSC Ratio</th>
                   <td class="center">
                     <input class="center" type="text" name="areaRatioNTSCuv" size="3" value="-">
                   </td>
@@ -105,48 +143,79 @@
                 </tr>
                 <tr>
                   <th class="center">
-                    <input class="center" type="text" name="colorF1" size="6" value="-">
+                    <input class="center" type="text" name="colorF3" size="6" value="-">
                   </th>
                   <th>Ratio</th>
-                  <td></td>
-                  <td class="right" colspan="2">Area Ratio</td>
-                  <td class="center">
-                    <input class="center" type="text" name="areaRatioxy" size="3" value="-">
-                  </td>
-                  <td colspan="3"></td>
-                  <td class="center">
+                  <td class="center" colspan="2">Area Ratio</td>
+                  <td class="center" colspan="2">Coverage Ratio</td>
+                </tr>
+                <tr>
+                  <td colspan="2"></td>
+                  <td class="center" colspan="2">
                     <input class="center" type="text" name="areaRatiouv" size="3" value="-">
+                  </td>
+                  <td class="center" colspan="2">
+                    <input class="center" type="text" name="coverageRatiouv" size="3" value="-">
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2">
+                  <td colspan="3">
                     <INPUT type="button" name="buttoncalc" onClick="calcRatio()" value="CalcRatio" class="btn calculate">
                   </td>
-                  <td></td>
-                  <td class="right" colspan="2">Coverage Ratio</td>
-                  <td class="center">
-                    <input class="center" type="text" name="coverageRatioxy" size="3" value="-">
-                  </td>
-                  <td colspan="3"></td>
-                  <td class="center">
-                    <input class="center" type="text" name="coverageRatiouv" size="3" value="-">
-                  </td>
+                  <td colspan="3">
+                    <INPUT type="button" name="buttoncalc" onClick="makeGraphXY()" value="GraphXY" class="btn calculate">
+                    <INPUT type="button" name="buttoncalc" onClick="makeGraphUV()" value="GraphUV" class="btn calculate">
+                    </td>
                 </tr>
                 <tr>
                   <td class="left" colspan="9">*You can choose either color space you like.</td>
                 </tr>
               </table>
             </form>
+            <div id="graphAreaXY">
+              <div class="mainGraph">
+                <canvas id="myChart"></canvas>
+                <p id="addComment">↓↓ To enlarge each point ↓↓</p>
+              </div>
+              <div class="subGraphArea">
+                <div class="subChart">
+                  <canvas id="blueChart"></canvas>
+                </div>
+                <div class="subChart">
+                  <canvas id="greenChart"></canvas>
+                </div>
+                <div class="subChart">
+                  <canvas id="redChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div id="graphAreaUV">
+              <div class="mainGraph">
+                <canvas id="myChartUV"></canvas>
+                <p id="addCommentUV">↓↓ To enlarge each point ↓↓</p>
+              </div>
+              <div class="subGraphArea">
+                <div class="subChart">
+                  <canvas id="blueChartUV"></canvas>
+                </div>
+                <div class="subChart">
+                  <canvas id="greenChartUV"></canvas>
+                </div>
+                <div class="subChart">
+                  <canvas id="redChartUV"></canvas>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
-    <footer>
+    <footer id="footer">
       <div class="container">
         <p class="logo">Ryokucha</p>
         <p>Learn To Be Creative.</P>
       </div>
     </footer>
-    <script src="../public/javascript/script.js"></script>
+    <script src="../public/javascript/script.js"></script>    
   </body>
 </html>
