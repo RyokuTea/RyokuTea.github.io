@@ -1,5 +1,5 @@
 <div class="header-logo">
-  <P class="logo">Ryokucha</P>
+  <P id="scrollTop" class="logo">Ryokucha</P>
   <span class="material-icons logo-icon">emoji_food_beverage</span>
 </div>
 <div class="menu" id="menu">
@@ -7,7 +7,7 @@
     <li class="menu-list-item">
       <p class="menu-item">HOME</p>
       <div class="sub-menu">
-        <p><a href="#"></a></p>
+        <p><a href="index.html"></a></p>
       </div>
     </li>
   </ul>
@@ -23,7 +23,7 @@
     <li class="menu-list-item">
       <p class="menu-item">FORMULAR</p>
       <div class="sub-menu">
-        <p><a href="/index.html">Inch</a></p>
+        <p><a href="/views/calInch.html">Inch</a></p>
         <p><a href="/views/calPPI.html">PPI</a></p>
         <p><a href="/views/ups.html">UPS</a></p>
         <p><a href="/views/calColor.html">Color</a></p>
@@ -87,5 +87,12 @@
       height: "40px"
     });
   });
+
+  $('#scrollTop').click(function(){
+    $('html,body').animate({
+      'scrollTop':0
+    },'slow');
+  });  
+
 });
 </script>
