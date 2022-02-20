@@ -1,22 +1,41 @@
 $(function() {
-  
-  /*
-  $('#menu-icon').click(function() {
-    $('#menu').fadeIn();
-    $('#close-icon').fadeIn();
-    $('#menu-icon').fadeOut();
-    $('#header').css({
-      height: "100%"
-    })
+
+  $('#header').click(function(){
+    $('html,body').animate({
+      'scrollTop':0
+    },'slow');
   });
 
-  $('#close-icon').click(function() {
-    $('#menu').fadeOut();
-    $('#close-icon').fadeOut();
-    $('#menu-icon').fadeIn();
-    $('#header').css({
-      height: "40px"
-    })
-  })
-  */
+  $('#calcBtn').click(function(){
+    var resValue = $('#checkedItem').val();
+    if(resValue ==''){
+      $('#error-message').text('Put values in these blanks!');
+    } else {
+      $('#error-message').text('');
+    }
+  });
+  
+  $('.change-btn').click(function() {
+    var $ImgDisplay = $('.active');
+    $ImgDisplay.removeClass('active');
+
+    if($(this).hasClass('next-btn')){
+      $ImgDisplay.next().addClass('active');
+    } else {
+      $ImgDisplay.prev().addClass('active');
+    }
+    toggleChangeBtn();
+  });
+  
+  function toggleChangeBtn(){
+    var index = $('.expImg').index($('.active'));
+    if(index == 0){
+      $('.prev-btn').hide();
+      $('.next-btn').show();  
+    } else if(index == ($('.expImg').length - 1)){
+      $('.prev-btn').show();
+      $('.next-btn').hide();
+    }
+  }
+
 });

@@ -328,7 +328,7 @@ function colorKind(obj){
 }
 
 function FindPPI(){
-   fi3.resultAAH.value = Math.round(Math.sqrt((25.4*fi3.inch.value)**2/(1+(fi3.resolutionV.value/fi3.resolutionH.value)**2))*10**3)*10**-3;
+   fi3.resultAAH.value = (Math.round(Math.sqrt((25.4*fi3.inch.value)**2/(1+(fi3.resolutionV.value/fi3.resolutionH.value)**2))*10**3)*10**-3).toFixed(3);
    fi3.resultAAV.value = (Math.round(fi3.resolutionV.value*fi3.resultAAH.value/fi3.resolutionH.value*10**3)*10**-3).toFixed(3);
    fi3.pixelV.value = (Math.round(fi3.resultAAV.value/fi3.resolutionV.value*10**3 *10**2)*10**-2).toFixed(2);
    fi3.subPixelH.value = (Math.round(fi3.pixelV.value / fi3.PixelFormat.value *10**2)*10**-2).toFixed(2);
@@ -343,6 +343,47 @@ function ClearPPI(){
    ClearContents(clearLists);
    dashContetns(dashLists);
    fi3.PixelFormat.value = "3";
+}
+
+function genKind(obj){
+   var idx = obj.selectedIndex;
+   var value = obj.options[idx].value;
+
+   switch (value){
+      case "1":
+         fi4.genX.value="200";
+         fi4.genY.value="200";
+         break;
+      case "4.5":
+         fi4.genX.value="730";
+         fi4.genY.value="920";
+         break;
+      case "6":
+         fi4.genX.value="1500";
+         fi4.genY.value="1800";
+         break;
+   }
+}
+
+function sample(){
+   fi4.unitX.value = 20;
+   fi4.unitY.value = 30;
+   fi4.marginX.value = 15;
+   fi4.marginY.value = 15;
+}
+
+function FindUPS(){
+//   sample();
+   fi4.longX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitX.value);
+   fi4.longY.value = Math.floor((fi4.genY.value - fi4.marginY.value)/fi4.unitY.value);
+   fi4.longXSize.value = fi4.unitX.value * fi4.longX.value;
+   fi4.longYSize.value = fi4.unitY.value * fi4.longY.value;
+   fi4.areaRatioLong.value = Math.round((fi4.longXSize.value * fi4.longYSize.value) / (fi4.genX.value * fi4.genY.value)*100*100)/100;
+   fi4.transX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitY.value);
+   fi4.transY.value = Math.floor((fi4.genY.value - fi4.marginY.value)/fi4.unitX.value);
+   fi4.transXSize.value = fi4.unitX.value * fi4.transX.value;
+   fi4.transYSize.value = fi4.unitY.value * fi4.transY.value;
+   fi4.areaRatioTrans.value = Math.round((fi4.transXSize.value * fi4.transYSize.value) / (fi4.genX.value * fi4.genY.value)*100*100)/100;
 }
 
 // Ref. This isn't used.

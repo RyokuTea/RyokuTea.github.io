@@ -40,6 +40,10 @@ header {
   text-align: center;
 }
 
+#scrollTop {
+  cursor: pointer;
+}
+
 .logo {
   font-size: 18px;
   font-weight: bold;
@@ -85,6 +89,27 @@ header {
 
 .menu-icon {
   display: none;
+}
+
+.contents {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.contents-list {
+  text-align: left;
+  counter-reset: counter;
+  list-style-type: none;
+}
+
+.menu-content::before {
+  counter-increment: counter;
+  content: counters(counter, '-')' ';
+}
+
+.menu-content {
+  font-size: 18px;
+  padding: 5px;
 }
 
 .close-icon {
@@ -133,6 +158,14 @@ main {
   color:red;
 }
 
+.numlock {
+  width: 7em;
+}
+
+.colorNumlock {
+  width: 4em;
+}
+
 .green {
   color: green;
 }
@@ -154,14 +187,44 @@ main {
   margin-top: 20px;
 }
 
+#error-message {
+  color: #F51414;
+}
+
 .explanation {
   padding-top: 40px;
+  display: flex;
+  flex-flow: column;
+}
+
+.change-btn-wrapper {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.prev-btn {
+  float: left;
+  cursor: pointer;
+  display: none;
+}
+
+.next-btn {
+  float: right;
+  cursor: pointer;
+}
+
+.Img-Display {
+  margin: 5px auto;
+  width: 320px;
+  height: auto;
 }
 
 .expImg {
-  margin-top: 5px;
-  width: 320px;
-  height: auto;
+  display: none;
+}
+
+.active {
+  display: block;
 }
 
 .btn {
@@ -241,6 +304,10 @@ main {
 
 #graphAreaUV {
   display: none;
+}
+
+.selectedGEN {
+  width: 15em;
 }
 
 footer {

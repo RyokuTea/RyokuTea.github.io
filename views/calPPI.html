@@ -39,16 +39,16 @@
               <table class="formula-table">
                 <tr>
                   <th class="right">Inch</th>
-                  <td><input class="center" type="text" name="inch" size="10"></td>
+                  <td><input class="center numlock" type="number" name="inch"></td>
                 </tr>
                 <tr>
                   <th class="right">Resolution_Horizontal</th>
-                  <td><input class="center" type="text" name="resolutionH" size="10"></td>
+                  <td><input class="center numlock" type="number" name="resolutionH"></td>
                 </tr>
                 <tr>
                   <th class="right">Pixel_Format</th>
                   <td>
-                    <select name="PixelFormat">
+                    <select name="PixelFormat" class="center numlock">
                       <option value="3" selected>RGB</option>
                       <option value="2">2</option>
                       <option value="1">WB</option>
@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                   <th class="right">Resolution_Vertical</th>
-                  <td><input class="center" type="text" name="resolutionV" size="10"></td>
+                  <td><input class="center numlock" type="number" name="resolutionV"></td>
                 </tr>
                 <tr>
                   <td class="right"><INPUT type="button" name="buttoncalc" onClick="FindPPI()" value="FindPixPitch" class="btn calculate"></th>
@@ -95,7 +95,23 @@
             </form>
             <div class="explanation">
               <P>Difinition</p>
-              <img class="expImg" src="../public/images/inch.png" alt="Inch">
+              <div class="change-btn-wrapper">
+                <div class="change-btn prev-btn">← Previous</div>
+                <div class="change-btn next-btn">Next →</div>
+              </div>
+              <div>
+                <ul>
+                  <li class="expImg active">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                </ul>
+              </div>
               <p>PPI: Pixel Per Inch</p>
               <p>PPI = 25.4 / Pixel * 10^3</p>
             </div>
@@ -107,10 +123,12 @@
       </div>
     </main>
     <footer id="footer">
+      <!--
       <div class="container">
         <p class="logo">Ryokucha</p>
         <p>Learn To Be Creative.</P>
       </div>
+      -->
     </footer>
     <script src="../public/javascript/script.js"></script>
   </body>

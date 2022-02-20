@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryokucha</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      //共通パーツ読み込み
+      //loadはネット上でしか機能しない
+      $(function() {
+       $("#header").load("/views/header.html");
+       $("#footer").load("/views/footer.html");
+      });
+    </script>
+  </head>
+  <body>
+    <header id="header">
+    </header>
+    <main>
+      <div class="top-wrapper">
+        <div class="container">
+          <h1>Let's calculate!</h1>
+        </div>
+      </div>
+      <div class="first wrapper">
+        <div class="container">
+          <h3>
+            <span class="material-icons window-icon">grid_view</span>
+            Unit of sheet (UPS)
+          </h3>
+          <p>To find the unit number on sheet.</p>
+          <div class="overview">
+            <form name="fi4">
+              <table class="formula-table">
+                <tr>
+                  <td class="right">(mm)</td>
+                  <th class="center">X</th>
+                  <th class="center">Y</th>
+                </tr>
+                <tr>
+                  <th class="right">Unit</th>
+                  <td><input class="center numlock" type="number" name="unitX"></td>
+                  <td><input class="center numlock" type="number" name="unitY"></td>
+                </tr>
+                <tr>
+                  <th class="right" rowspan="2">Generation</th>
+                  <td class="center" colspan="2">
+                      <select name="genFormat" class="center selectedGEN" onchange="genKind(this)">
+                        <option value="1">GEN 1</option>
+                        <option value="4.5" selected>GEN 4.5</option>
+                        <option value="6">GEN 6</option>
+                      </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="center" type="text" name="genX" size="9" value="730"></td>
+                  <td><input class="center" type="text" name="genY" size="9" value="920"></td>
+                </tr>
+                <tr>
+                  <th class="right">Margin</th>
+                  <td><input class="center numlock" type="number" name="marginX"></td>
+                  <td><input class="center numlock" type="number" name="marginY"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="center"><INPUT type="button" name="buttoncalc" onClick="FindUPS()" value="FindUPS" class="btn calculate"></th>
+                  <td><input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear"></td>
+                </tr>
+                <tr>
+                  <th colspan="3" class="left">In case of longitudinal</th>
+                </tr>
+                <tr>
+                  <th class="right">Number</th>
+                  <td><input class="center" type="text" name="longX" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="longY" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Total size</th>
+                  <td><input class="center" type="text" name="longXSize" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="longYSize" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Area ratio</th>
+                  <td class="center"><input class="center" type="text" name="areaRatioLong" size="10" value="-"></td>
+                  <td class="left">%</td>
+                </tr>
+                <tr>
+                  <th colspan="3" class="left">In case of Transverse</th>
+                </tr>
+                <tr>
+                  <td class="right">Number</td>
+                  <td><input class="center" type="text" name="transX" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="transY" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <td class="right">Total size</td>
+                  <td><input class="center" type="text" name="transXSize" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="transYSize" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Area ratio</th>
+                  <td class="center"><input class="center" type="text" name="areaRatioTrans" size="10" value="-"></td>
+                  <td class="left">%</td>
+                </tr>
+            </table>
+            </form>
+            <div class="explanation">
+              <P>Difinition</p>
+              <div class="change-btn-wrapper">
+                <div class="change-btn prev-btn">← Previous</div>
+                <div class="change-btn next-btn">Next →</div>
+              </div>
+              <div>
+                <ul>
+                  <li class="expImg active">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                </ul>
+              </div>
+              <p>PPI: Pixel Per Inch</p>
+              <p>PPI = 25.4 / Pixel * 10^3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <span><a href="./calColor.html">=> Calculate Color</a></span>
+      </div>
+    </main>
+    <footer id="footer">
+      <!--
+      <div class="container">
+        <p class="logo">Ryokucha</p>
+        <p>Learn To Be Creative.</P>
+      </div>
+      -->
+    </footer>
+    <script src="../public/javascript/script.js"></script>
+  </body>
+</html>

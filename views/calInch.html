@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryokucha</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      //共通パーツ読み込み
+      //loadはネット上でしか機能しない
+      $(function() {
+       $("#header").load("/views/header.html");
+       $("#footer").load("/views/footer.html");
+      });
+    </script>
+  </head>
+  <body>
+    <header id="header">
+    <!--
+      <div class="header-logo">
+        <P class="logo">Ryokucha</P>
+        <span class="material-icons logo-icon">emoji_food_beverage</span>
+      </div>
+      <div class="menu" id="menu">
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">HOME</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">ABOUT</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">FORMULAR</p>
+            <div class="sub-menu">
+              <p><a href="/index.html">Inch</a></p>
+              <p><a href="/views/calColor.html">Color</a></p>
+              <p><a href="/views/calPPI.html">PPI</a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">BLOG</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">FAQ</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <p class="menu-item">Login</p>
+            <div class="sub-menu">
+              <p><a href="#"></a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <span class="material-icons menu-icon" id="menu-icon">menu</span>
+      <span class="material-icons close-icon" id="close-icon">close</span>
+      <script>
+        $(function() {
+          $('.menu-list-item').click(function() {
+            var $subMenu = $(this).find('div');
+            if($subMenu.hasClass('open')){
+              $subMenu.fadeOut();
+              $subMenu.removeClass('open');
+            } else {
+              $subMenu.fadeIn();
+              $subMenu.addClass('open');
+            }
+          });
+          
+          $('#menu-icon').click(function() {
+            $('#menu').fadeIn();
+            $('#close-icon').fadeIn();
+            $('#menu-icon').fadeOut();
+            $('#header').css({
+              height: "100%"
+            });
+          });
+
+        $('#close-icon').click(function() {
+          $('#menu').fadeOut();
+          $('#close-icon').fadeOut();
+          $('#menu-icon').fadeIn();
+          $('#header').css({
+            height: "40px"
+          });
+        });
+      });
+      </script>
+    -->
+    </header>
+    <main>
+      <div class="top-wrapper">
+        <div class="container">
+          <h1>Let's calculate!</h1>
+        </div>
+      </div>
+      <div class="first wrapper">
+        <div class="container">
+          <h3>
+            <span class="material-icons window-icon">desktop_windows</span>
+            Inch of display
+          </h3>
+          <p>To find the inch of display.</p>
+          <div class="overview">
+            <form name="fi1">
+              <table class="formula-table">
+                <tr>
+                  <th class="right">Resolution_Horizontal</th>
+                  <td><input id="checkedItem" class="center numlock" type="number" name="resolutionH"></td>
+                </tr>
+                <tr>
+                  <th class="right">Pixel_Format</th>
+                  <td>
+                    <select name="PixelFormat" class="center numlock">
+                      <option value="3" selected>RGB</option>
+                      <option value="2">2</option>
+                      <option value="1">WB</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="right">Resolution_Vertical</th>
+                  <td><input class="center numlock" type="number" name="resolutionV"></td>
+                </tr>
+                <tr>
+                  <th class="right">subPixel_Horizontal</th>
+                  <td><input class="center numlock" type="number" name="subPixelH"></td>
+                  <td class="left"><font face="symbol">m</font>m</td>
+                </tr>
+                <tr>
+                  <th class="right">Pixel_Vertical</th>
+                  <td><input class="center numlock" type="number" name="pixelV" placeholder="-"></td>
+                  <td class="left"><font face="symbol">m</font>m</td>
+                </tr>
+                <tr>
+                  <td class="right"><INPUT id="calcBtn" type="button" name="buttoncalc" onClick="FindInch()" value="FindInch" class="btn calculate"></th>
+                  <td><input type="button" name="clear" onClick="Clear()" value="Clear" class="btn clear"></td>
+                </tr>
+                <tr>
+                  <td class="right">PPI(Horizontal)</td>
+                  <td><input class="center" type="text" name="PPIH" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <td class="right">PPI(Vertical)</td>
+                  <td><input class="center" type="text" name="PPIV" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">A.A._Horizontal</th>
+                  <td><input class="center" type="text" name="resultAAH" size="10" value="-"></td>
+                  <td class="left">mm</td>
+                </tr>
+                <tr>
+                  <th class="right">A.A._Vertical</th>
+                  <td><input class="center" type="text" name="resultAAV" size="10" value="-"></td>
+                  <td class="left">mm</td>
+                </tr>
+                <tr>
+                  <th class="right">Inch</th>
+                  <td><input class="center" type="text" name="result" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="center" colspan="2">
+                    <p id="error-message"></p>
+                  </th>
+                </tr>
+              </table>
+            </form>
+            <div class="explanation">
+              <P>Difinition</p>
+              <div class="change-btn-wrapper">
+                <div class="change-btn prev-btn">← Previous</div>
+                <div class="change-btn next-btn">Next →</div>
+              </div>
+              <div>
+                <ul>
+                  <li class="expImg active">
+                    <img class="Img-Display" src="../public/images/inch.png" alt="Inch">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch-Psuedo.png" alt="Inch-Psuedo">
+                  </li>
+                  <li class="expImg">
+                    <img class="Img-Display" src="../public/images/inch-WB.png" alt="Inch-WB">
+                  </li>
+                </ul>
+              </div>
+              <p>PPI: Pixel Per Inch</p>
+              <p>PPI = 25.4 / Pixel * 10^3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <span><a href="../views/calColor.html">=> Calculate Color</a></span>
+      </div>
+    </main>
+    <footer id="footer">
+      <!--
+      <div class="container">
+        <p class="logo">Ryokucha</p>
+        <p>Learn To Be Creative.</P>
+      </div>
+      -->
+    </footer>
+    <script src="../public/javascript/script.js"></script>
+  </body>
+</html>
