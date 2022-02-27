@@ -1,11 +1,4 @@
 $(function() {
-/* Is #header correct instead of #scrollTop?
-  $('#header').click(function(){
-    $('html,body').animate({
-      'scrollTop':0
-    },'slow');
-  });
-*/
   $('#calcBtn').click(function(){
     var resValue = $('#checkedItem').val();
     if(resValue ==''){

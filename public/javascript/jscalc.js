@@ -353,37 +353,142 @@ function genKind(obj){
       case "1":
          fi4.genX.value="200";
          fi4.genY.value="200";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
+         break;
+      case "2":
+         fi4.genX.value="370";
+         fi4.genY.value="470";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
+         break;
+      case "3":
+         fi4.genX.value="550";
+         fi4.genY.value="650";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
+         break;
+      case "3.5":
+         fi4.genX.value="600";
+         fi4.genY.value="720";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
+         break;
+      case "4":
+         fi4.genX.value="680";
+         fi4.genY.value="880";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
          break;
       case "4.5":
          fi4.genX.value="730";
          fi4.genY.value="920";
+         fi4.marginMiddleX.value="0";
+         fi4.marginMiddleY.value="0";
          break;
-      case "6":
+      case "5a":
+         fi4.genX.value="1100";
+         fi4.genY.value="1250";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "5b":
+         fi4.genX.value="1100";
+         fi4.genY.value="1300";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "5.5":
+         fi4.genX.value="1300";
+         fi4.genY.value="1500";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "6a":
          fi4.genX.value="1500";
          fi4.genY.value="1800";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "6b":
+         fi4.genX.value="1500";
+         fi4.genY.value="1850";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "7":
+         fi4.genX.value="1870";
+         fi4.genY.value="2200";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "7.5":
+         fi4.genX.value="1950";
+         fi4.genY.value="2250";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "8":
+         fi4.genX.value="2160";
+         fi4.genY.value="2460";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "8.5":
+         fi4.genX.value="2200";
+         fi4.genY.value="2500";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "8.6":
+         fi4.genX.value="2250";
+         fi4.genY.value="2600";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "10":
+         fi4.genX.value="2880";
+         fi4.genY.value="3130";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
+         break;
+      case "10.5":
+         fi4.genX.value="2940";
+         fi4.genY.value="3370";
+         fi4.marginMiddleX.value="30";
+         fi4.marginMiddleY.value="30";
          break;
    }
 }
 
-function sample(){
-   fi4.unitX.value = 20;
-   fi4.unitY.value = 30;
-   fi4.marginX.value = 15;
-   fi4.marginY.value = 15;
-}
-
 function FindUPS(){
-//   sample();
-   fi4.longX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitX.value);
-   fi4.longY.value = Math.floor((fi4.genY.value - fi4.marginY.value)/fi4.unitY.value);
+   if(fi4.marginMiddleX.value==0 && fi4.marginMiddleY.value==0){
+      fi4.longX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitX.value);
+      fi4.longY.value = Math.floor((fi4.genY.value - (fi4.marginY.value*2))/fi4.unitY.value);
+
+      fi4.transX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitY.value);
+      fi4.transY.value = Math.floor((fi4.genY.value - (fi4.marginY.value*2))/fi4.unitX.value);
+   } else {
+      fi4.longX.value = 2*(Math.floor((fi4.genX.value/2 - (Number(fi4.marginX.value)+Number(fi4.marginMiddleX.value)/2))/fi4.unitX.value));
+      fi4.longY.value = 2*(Math.floor((fi4.genY.value/2 - (Number(fi4.marginY.value)+Number(fi4.marginMiddleY.value)/2))/fi4.unitY.value));
+
+      fi4.transX.value = 2*(Math.floor((fi4.genX.value/2 - (Number(fi4.marginX.value)+Number(fi4.marginMiddleX.value)/2))/fi4.unitY.value));
+      fi4.transY.value = 2*(Math.floor((fi4.genY.value/2 - (Number(fi4.marginY.value)+Number(fi4.marginMiddleY.value)/2))/fi4.unitX.value));
+   }
+   fi4.longXY.value = fi4.longX.value * fi4.longY.value;
    fi4.longXSize.value = fi4.unitX.value * fi4.longX.value;
    fi4.longYSize.value = fi4.unitY.value * fi4.longY.value;
-   fi4.areaRatioLong.value = Math.round((fi4.longXSize.value * fi4.longYSize.value) / (fi4.genX.value * fi4.genY.value)*100*100)/100;
-   fi4.transX.value = Math.floor((fi4.genX.value - (fi4.marginX.value*2))/fi4.unitY.value);
-   fi4.transY.value = Math.floor((fi4.genY.value - fi4.marginY.value)/fi4.unitX.value);
-   fi4.transXSize.value = fi4.unitX.value * fi4.transX.value;
-   fi4.transYSize.value = fi4.unitY.value * fi4.transY.value;
-   fi4.areaRatioTrans.value = Math.round((fi4.transXSize.value * fi4.transYSize.value) / (fi4.genX.value * fi4.genY.value)*100*100)/100;
+   fi4.areaRatioLong.value = Math.round((fi4.longXSize.value * fi4.longYSize.value) / (fi4.genX.value * fi4.genY.value)*100*10)/10;
+
+   fi4.transXY.value = fi4.transX.value * fi4.transY.value;
+   fi4.transXSize.value = fi4.unitY.value * fi4.transX.value;
+   fi4.transYSize.value = fi4.unitX.value * fi4.transY.value;
+   fi4.areaRatioTrans.value = Math.round((fi4.transXSize.value * fi4.transYSize.value) / (fi4.genX.value * fi4.genY.value)*100*10)/10;
+}
+
+function clearUPS(){
+   //To initialize. Require Id, name is not enough.
+   document.getElementById("fi4").reset();
 }
 
 // Ref. This isn't used.

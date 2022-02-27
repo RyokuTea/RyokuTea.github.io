@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryokucha</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <script type="text/javascript" src="../public/javascript/jscalc.js"></script>
+    <script type="text/javascript" src="../public/javascript/jsdraw.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      //共通パーツ読み込み
+      //loadはネット上でしか機能しない
+      $(function() {
+       $("#header").load("/views/header.html");
+       $("#footer").load("/views/footer.html");
+      });
+    </script>
+  </head>
+  <body>
+    <header id="header">
+    </header>
+    <main>
+      <div class="top-wrapper">
+        <div class="container">
+          <h1>Let's calculate!</h1>
+        </div>
+      </div>
+      <div class="first wrapper">
+        <div class="container">
+          <h3>
+            <span class="material-icons window-icon">grid_view</span>
+            Unit of sheet (UPS)
+          </h3>
+          <p>To find the unit number on sheet.</p>
+          <div class="overview">
+            <form name="fi4" id="fi4">
+              <table class="formula-table">
+                <tr>
+                  <td class="right">(mm)</td>
+                  <th class="center">X</th>
+                  <th class="center">Y</th>
+                </tr>
+                <tr>
+                  <th class="right">Unit</th>
+                  <td><input class="center numlock" type="number" name="unitX"></td>
+                  <td><input class="center numlock" type="number" name="unitY"></td>
+                </tr>
+                <tr>
+                  <th class="right" rowspan="2">Generation</th>
+                  <td class="center" colspan="2">
+                      <select name="genFormat" class="center selectedGEN" onchange="genKind(this)">
+                        <option value="1">GEN 1</option>
+                        <option value="2">GEN 2</option>
+                        <option value="3">GEN 3</option>
+                        <option value="3.5">GEN 3.5</option>
+                        <option value="4">GEN 4</option>
+                        <option value="4.5">GEN 4.5</option>
+                        <option value="5a">GEN 5a</option>
+                        <option value="5b">GEN 5b</option>
+                        <option value="5.5">GEN 5.5</option>
+                        <option value="6a">GEN 6a</option>
+                        <option value="6b" selected>GEN 6b</option>
+                        <option value="7">GEN 7</option>
+                        <option value="7.5">GEN 7.5</option>
+                        <option value="8">GEN 8</option>
+                        <option value="8.5">GEN 8.5</option>
+                        <option value="8.6">GEN 8.6</option>
+                        <option value="10">GEN 10</option>
+                        <option value="10.5">GEN 10.5</option>
+                      </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="center" type="text" name="genX" size="9" value="1500"></td>
+                  <td><input class="center" type="text" name="genY" size="9" value="1800"></td>
+                </tr>
+                <tr>
+                  <th class="right">Margin</th>
+                  <td><input class="center numlock" type="number" name="marginX" value="15"></td>
+                  <td><input class="center numlock" type="number" name="marginY" value="15"></td>
+                </tr>
+                <tr>
+                  <th class="right">Margin Middle</th>
+                  <td><input class="center numlock" type="number" name="marginMiddleX" value="30"></td>
+                  <td><input class="center numlock" type="number" name="marginMiddleY" value="30"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="center"><INPUT type="button" name="buttoncalc" onClick="FindUPS()" value="FindUPS" class="btn calculate"></th>
+                  <td><input type="button" name="clear" onClick="clearUPS()" value="Clear" class="btn clear"></td>
+                </tr>
+                <tr>
+                  <th colspan="3" class="left">In case of Longitudinal</th>
+                </tr>
+                <tr>
+                  <th class="right">Number</th>
+                  <td><input class="center" type="text" name="longX" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="longY" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Total Number</th>
+                  <td colspan="2"><input class="center" type="text" name="longXY" size="25" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Total size</th>
+                  <td><input class="center" type="text" name="longXSize" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="longYSize" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Area ratio</th>
+                  <td class="center"><input class="center" type="text" name="areaRatioLong" size="10" value="-"></td>
+                  <td class="left">%</td>
+                </tr>
+                <tr>
+                  <th colspan="3" class="left">In case of Transverse</th>
+                </tr>
+                <tr>
+                  <td class="right">Number</td>
+                  <td><input class="center" type="text" name="transX" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="transY" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <td class="right">Total Number</td>
+                  <td colspan="2"><input class="center" type="text" name="transXY" size="25" value="-"></td>
+                </tr>
+                <tr>
+                  <td class="right">Total size</td>
+                  <td><input class="center" type="text" name="transXSize" size="10" value="-"></td>
+                  <td><input class="center" type="text" name="transYSize" size="10" value="-"></td>
+                </tr>
+                <tr>
+                  <th class="right">Area ratio</th>
+                  <td class="center"><input class="center" type="text" name="areaRatioTrans" size="10" value="-"></td>
+                  <td class="left">%</td>
+                </tr>
+            </table>
+            </form>
+            <div class="explanation">
+              <P>Image of arrangement</p>
+              <div id="drawAreaLong">
+                <div class="drawArea">
+                  <canvas id="myUPSLong" width="330" height="450"></canvas>
+                </div>
+              </div>
+                <div class="btns-area">
+                  <INPUT type="button" name="btnDraw" onClick="drawLong()" value="DrawUPSLong" class="btn calculate">
+                  <INPUT type="button" name="btnDraw" onClick="drawTrans()" value="DrawUPSTrans" class="btn calculate">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer id="footer">
+      <!--
+      <div class="container">
+        <p class="logo">Ryokucha</p>
+        <p>Learn To Be Creative.</P>
+      </div>
+      -->
+    </footer>
+    <script src="../public/javascript/script.js"></script>
+  </body>
+</html>
