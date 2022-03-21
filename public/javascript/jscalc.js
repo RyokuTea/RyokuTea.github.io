@@ -476,13 +476,13 @@ function FindUPS(){
       fi4.transY.value = 2*(Math.floor((fi4.genY.value/2 - (Number(fi4.marginY.value)+Number(fi4.marginMiddleY.value)/2))/fi4.unitX.value));
    }
    fi4.longXY.value = fi4.longX.value * fi4.longY.value;
-   fi4.longXSize.value = fi4.unitX.value * fi4.longX.value;
-   fi4.longYSize.value = fi4.unitY.value * fi4.longY.value;
+   fi4.longXSize.value = Math.floor(fi4.unitX.value * fi4.longX.value * 10**2)/10**2;
+   fi4.longYSize.value = Math.floor(fi4.unitY.value * fi4.longY.value * 10**2)/10**2;
    fi4.areaRatioLong.value = Math.round((fi4.longXSize.value * fi4.longYSize.value) / (fi4.genX.value * fi4.genY.value)*100*10)/10;
 
    fi4.transXY.value = fi4.transX.value * fi4.transY.value;
-   fi4.transXSize.value = fi4.unitY.value * fi4.transX.value;
-   fi4.transYSize.value = fi4.unitX.value * fi4.transY.value;
+   fi4.transXSize.value = Math.floor(fi4.unitY.value * fi4.transX.value * 10**2)/10**2;
+   fi4.transYSize.value = Math.floor(fi4.unitX.value * fi4.transY.value * 10**2)/10**2;
    fi4.areaRatioTrans.value = Math.round((fi4.transXSize.value * fi4.transYSize.value) / (fi4.genX.value * fi4.genY.value)*100*10)/10;
 }
 
